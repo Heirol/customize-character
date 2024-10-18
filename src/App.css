@@ -17,12 +17,17 @@ body {
 }
 
 img {
-  height: 5rem;
-  width: 5rem;
+  height: 3rem;
+  width: 3rem;
   border: 0.125rem solid #ddd;
   border-radius: 0.5rem;
   margin: 0.25rem;
 }
+.img-avatar {
+  height: 6rem;
+  width: 6rem;
+}
+
 .img-body {
   position: absolute;
   z-index: 0;
@@ -34,6 +39,10 @@ img {
 
 .img-hair {
   position: absolute;
+  z-index: 7;
+}
+.img-facialHair {
+  position: absolute;
   z-index: 8;
 }
 .img-eye {
@@ -44,9 +53,13 @@ img {
   position: absolute;
   z-index: 10;
 }
-.img-glasses {
+.img-mouths {
   position: absolute;
   z-index: 11;
+}
+.img-glasses {
+  position: absolute;
+  z-index: 12;
 }
 
 img:hover {
@@ -68,22 +81,22 @@ h1 {
 }
 h2 {
   margin-bottom: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
 }
 h3 {
-  margin-bottom: 0.25rem;
-  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
 }
 
 button {
-  height: 3rem;
+  height: 2.5rem;
   padding: 0 1rem;
   border: none;
   border-radius: 0.5rem;
   background-color: #4c00ff;
   color: white;
   position: absolute;
-  top: 9rem;
+  top: 8.5rem;
 }
 button:hover {
   filter: brightness(150%);
@@ -102,7 +115,7 @@ button:hover {
   padding: 1rem;
   margin: 0.75rem 1rem;
   width: 10rem;
-  height: 14rem;
+  height: 12.5rem;
   filter: drop-shadow(0.5rem 0.5rem 0px #777);
   border-radius: 0.5rem;
   display: flex;
@@ -110,10 +123,6 @@ button:hover {
 }
 
 .section-avatar {
-  height: 8rem;
-  width: 8rem;
-  background-color: white;
-  padding: 1rem;
   display: flex;
   justify-content: center;
 }

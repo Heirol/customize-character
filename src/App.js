@@ -5,8 +5,8 @@ import HairList from "./HairList";
 import Avatar from "./Avatar";
 import EyeList from "./EyeList";
 import EyebrowList from "./EyebrowList";
-import ShirtList from "./ShirtList";
 import GlassesList from "./GlassesList";
+import ItemList from "./ItemList";
 
 function App() {
   // Create BodyArray
@@ -40,13 +40,6 @@ function App() {
     eyebrows.push(item);
   }
 
-  // Create ShirtArray
-  const shirtCount = 5;
-  let shirts = [];
-  for (let i = 1; i <= shirtCount; i++) {
-    let item = { id: i, shirtUrl: `/images/clothes/layer_1/${i}.png` };
-    shirts.push(item);
-  }
   // Create GlassesArray
   const countGlasses = 17;
   let multiGlasses = [];
@@ -54,15 +47,54 @@ function App() {
     let item = { id: i, glassesUrl: `/images/accessories/glasses/${i}.png` };
     multiGlasses.push(item);
   }
-  console.log(multiGlasses);
+  // Create ItemArray
+  let items = [
+    { name: "facial_hair", num: 17 },
+    { name: "mouths", num: 24 },
+    { name: "shirt", num: 5 },
+  ];
+
+  // Function Create Array
+  function createItemArray(name, num) {
+    let itemArray = [];
+    for (let i = 1; i <= num; i++) {
+      let item = { id: i, itemUrl: `/images/${name}/${i}.png` };
+      itemArray.push(item);
+    }
+    return itemArray;
+  }
+  let facialHairArray = createItemArray(items[0].name, items[0].num);
+  let mouthsArray = createItemArray(items[1].name, items[1].num);
+  let shirtArray = createItemArray(items[2].name, items[2].num);
+
+  // Function get H2
+  function getTitle(name) {
+    let titleH2 = "";
+    if (name === "facial_hair") {
+      titleH2 = "Facial Hair";
+    } else if (name === "mouths") {
+      titleH2 = "Mouths";
+    } else {
+      titleH2 = "Shirt";
+    }
+    return titleH2;
+  }
+  let facialHairTitle = getTitle(items[0].name);
+  let mouthsTitle = getTitle(items[1].name);
+  let shirtTitle = getTitle(items[2].name);
 
   // USESTATE FOR AVATAR
   const [body, setBody] = useState("/images/body/1.png");
   const [hair, setHair] = useState("/images/hair/1.png");
   const [eye, setEye] = useState("/images/eyes/1.png");
   const [eyebrow, setEyebrow] = useState("/images/eyebrows/1.png");
-  const [shirt, setShirt] = useState("/images/clothes/layer_1/1.png");
+
   const [glasses, setGlasses] = useState("/images/accessories/glasses/1.png");
+  const [facialHair, setFacialHair] = useState(
+    `/images/${items[0].name}/1.png`
+  );
+  const [mouths, setMouths] = useState(`/images/${items[1].name}/1.png`);
+  const [shirt, setShirt] = useState(`/images/${items[2].name}/1.png`);
 
   // HANDLE EVENT ONCLICK
   const handleBodyChange = (imageUrl) => {
@@ -77,30 +109,48 @@ function App() {
   const handleClickEyebrow = (eyebrowUrl) => {
     setEyebrow(eyebrowUrl);
   };
-  const handleClickShirt = (shirtUrl) => {
-    setShirt(shirtUrl);
-  };
   const handleClickGlasses = (glassesUrl) => {
     setGlasses(glassesUrl);
+  };
+  const handleClickItem = (itemUrl) => {
+    if (itemUrl.includes("facial_hair")) {
+      setFacialHair(itemUrl);
+    }
+    if (itemUrl.includes("mouths")) {
+      setMouths(itemUrl);
+    }
+    if (itemUrl.includes("shirt")) {
+      setShirt(itemUrl);
+    }
   };
 
   //RANDOMIZE
   const handleRandom = () => {
-    // let randomNum = Math.floor(Math.random() * 10) + 1
     setBody(`/images/body/${Math.floor(Math.random() * bodyCount) + 1}.png`);
     setHair(`/images/hair/${Math.floor(Math.random() * hairCount) + 1}.png`);
     setEye(`/images/eyes/${Math.floor(Math.random() * eyeCount) + 1}.png`);
     setEyebrow(
       `/images/eyebrows/${Math.floor(Math.random() * eyebrowCount) + 1}.png`
     );
-    setShirt(
-      `/images/clothes/layer_1/${
-        Math.floor(Math.random() * shirtCount) + 1
-      }.png`
-    );
     setGlasses(
       `/images/accessories/glasses/${
         Math.floor(Math.random() * countGlasses) + 1
+      }.png`
+    );
+
+    setFacialHair(
+      `/images/${items[0].name}/${
+        Math.floor(Math.random() * items[0].num) + 1
+      }.png`
+    );
+    setMouths(
+      `/images/${items[1].name}/${
+        Math.floor(Math.random() * items[1].num) + 1
+      }.png`
+    );
+    setShirt(
+      `/images/${items[2].name}/${
+        Math.floor(Math.random() * items[2].num) + 1
       }.png`
     );
   };
@@ -115,6 +165,8 @@ function App() {
         eyebrowUrl={eyebrow}
         shirtUrl={shirt}
         glassesUrl={glasses}
+        facialHair={facialHair}
+        mouthsUrl={mouths}
         handleRandom={handleRandom}
       />
       <BodyList
@@ -133,15 +185,28 @@ function App() {
         onClickEyebrow={handleClickEyebrow}
         currentEyebrow={eyebrow}
       />
-      <ShirtList
-        arrayShirt={shirts}
-        onClickShirt={handleClickShirt}
-        currentShirt={shirt}
-      />
       <GlassesList
         arrayGlasses={multiGlasses}
         onClickGlasses={handleClickGlasses}
         currentGlasses={glasses}
+      />
+      <ItemList
+        itemArray={shirtArray}
+        title={shirtTitle}
+        clickChangeItem={handleClickItem}
+        currentUrl={shirt}
+      />
+      <ItemList
+        itemArray={facialHairArray}
+        title={facialHairTitle}
+        clickChangeItem={handleClickItem}
+        currentUrl={facialHair}
+      />
+      <ItemList
+        itemArray={mouthsArray}
+        title={mouthsTitle}
+        clickChangeItem={handleClickItem}
+        currentUrl={mouths}
       />
     </div>
   );
