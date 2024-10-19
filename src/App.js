@@ -85,15 +85,18 @@ function App() {
   };
 
   //RANDOMIZE
+  const randomFn = (num) => {
+    return Math.floor(Math.random() * num) + 1;
+  };
   const handleRandom = () => {
-    setBody(`/images/body/${Math.floor(Math.random() * bodyCount) + 1}.png`);
-    setGlasses(`/images/accessories/glasses/${Math.floor(Math.random() * countGlasses) + 1}.png`);
-    setEyebrow(`/images/eyebrows/${Math.floor(Math.random() * items[5].num) + 1}.png`);
-    setEye(`/images/eyes/${Math.floor(Math.random() * items[4].num) + 1}.png`);
-    setHair(`/images/hair/${Math.floor(Math.random() * items[3].num) + 1}.png`);
-    setFacialHair(`/images/${items[0].name}/${Math.floor(Math.random() * items[0].num) + 1}.png`);
-    setMouths(`/images/${items[1].name}/${Math.floor(Math.random() * items[1].num) + 1}.png`);
-    setShirt(`/images/${items[2].name}/${Math.floor(Math.random() * items[2].num) + 1}.png`);
+    setBody(`/images/body/${randomFn(bodyCount)}.png`);
+    setGlasses(`/images/accessories/glasses/${randomFn(countGlasses)}.png`);
+    setEyebrow(`/images/eyebrows/${randomFn(items[5].num)}.png`);
+    setEye(`/images/eyes/${randomFn(items[4].num)}.png`);
+    setHair(`/images/hair/${randomFn(items[3].num)}.png`);
+    setFacialHair(`/images/facial_hair/${randomFn(items[0].num)}.png`);
+    setMouths(`/images/mouths/${randomFn(items[1].num)}.png`);
+    setShirt(`/images/shirt/${randomFn(items[2].num)}.png`);
   };
 
   return (
