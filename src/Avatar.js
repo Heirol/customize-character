@@ -7,7 +7,7 @@ function Avatar({
   eyebrowUrl,
   shirtUrl,
   glassesUrl,
-  facialHair,
+  facialHairUrl,
   mouthsUrl,
   handleRandom,
 }) {
@@ -21,7 +21,7 @@ function Avatar({
           <img className="img-eyebrow img-avatar" src={eyebrowUrl} alt="" />
           <img className="img-shirt img-avatar" src={shirtUrl} alt="" />
           <img className="img-glasses img-avatar" src={glassesUrl} alt="" />
-          <img className="img-facialHair img-avatar" src={facialHair} alt="" />
+          <img className="img-facialHair img-avatar" src={facialHairUrl} alt="" />
           <img className="img-mouths img-avatar" src={mouthsUrl} alt="" />
         </div>
         <button onClick={handleRandom}>Random</button>

@@ -6,21 +6,21 @@ import GlassesList from "./GlassesList";
 import ItemList from "./ItemList";
 
 function App() {
-  // Create BodyArray
+  // CREATE BODY ARRAY
   const bodyCount = 17;
   let bodyArray = [];
   for (let i = 1; i <= bodyCount; i++) {
     let item = { id: i, bodyUrl: `/images/body/${i}.png` };
     bodyArray.push(item);
   }
-  // Create GlassesArray
+  // CREATE GLASSES
   const countGlasses = 17;
   let multiGlasses = [];
   for (let i = 1; i <= countGlasses; i++) {
     let item = { id: i, glassesUrl: `/images/accessories/glasses/${i}.png` };
     multiGlasses.push(item);
   }
-  // List ItemArray
+  // LIST ITEM ARRAY
   let items = [
     { name: "facial_hair", num: 17 },
     { name: "mouths", num: 24 },
@@ -30,7 +30,7 @@ function App() {
     { name: "eyebrows", num: 15 },
   ];
 
-  // Function Create Array
+  // FUNCTION CREATE ARRAY
   function createItemArray(name, num) {
     let itemArray = [];
     for (let i = 1; i <= num; i++) {
@@ -39,7 +39,7 @@ function App() {
     }
     return itemArray;
   }
-  let facialHairArray = createItemArray(items[0].name, items[0].num);
+  let facialHArr = createItemArray(items[0].name, items[0].num);
   let mouthsArray = createItemArray(items[1].name, items[1].num);
   let shirtArray = createItemArray(items[2].name, items[2].num);
   let hairArray = createItemArray(items[3].name, items[3].num);
@@ -49,12 +49,12 @@ function App() {
   // USESTATE FOR AVATAR
   const [body, setBody] = useState("/images/body/1.png");
   const [glasses, setGlasses] = useState("/images/accessories/glasses/1.png");
-  const [eyebrow, setEyebrow] = useState(`/images/${items[5].name}/1.png`);
-  const [eye, setEye] = useState(`/images/${items[4].name}/1.png`);
-  const [hair, setHair] = useState(`/images/${items[3].name}/1.png`);
-  const [facialHair, setFacialHair] = useState(`/images/${items[0].name}/1.png`);
-  const [mouths, setMouths] = useState(`/images/${items[1].name}/1.png`);
-  const [shirt, setShirt] = useState(`/images/${items[2].name}/1.png`);
+  const [eyebrow, setEyebrow] = useState(`/images/eyebrows/1.png`);
+  const [eye, setEye] = useState(`/images/eyes/1.png`);
+  const [hair, setHair] = useState(`/images/hair/1.png`);
+  const [facialHair, setFacialHair] = useState(`/images/facial_hair/1.png`);
+  const [mouths, setMouths] = useState(`/images/mouths/1.png`);
+  const [shirt, setShirt] = useState(`/images/shirt/1.png`);
 
   // HANDLE EVENT ONCLICK
   const handleBodyChange = (imageUrl) => {
@@ -84,7 +84,7 @@ function App() {
     }
   };
 
-  //RANDOMIZE
+  // HANDLE RANDOM
   const randomFn = (num) => {
     return Math.floor(Math.random() * num) + 1;
   };
@@ -109,7 +109,7 @@ function App() {
         eyebrowUrl={eyebrow}
         shirtUrl={shirt}
         glassesUrl={glasses}
-        facialHair={facialHair}
+        facialHairUrl={facialHair}
         mouthsUrl={mouths}
         handleRandom={handleRandom}
       />
@@ -123,11 +123,7 @@ function App() {
       <ItemList itemArray={eyesArray} clickChangeItem={handleClickItem} currentUrl={eye} />
       <ItemList itemArray={hairArray} clickChangeItem={handleClickItem} currentUrl={hair} />
       <ItemList itemArray={shirtArray} clickChangeItem={handleClickItem} currentUrl={shirt} />
-      <ItemList
-        itemArray={facialHairArray}
-        clickChangeItem={handleClickItem}
-        currentUrl={facialHair}
-      />
+      <ItemList itemArray={facialHArr} clickChangeItem={handleClickItem} currentUrl={facialHair} />
       <ItemList itemArray={mouthsArray} clickChangeItem={handleClickItem} currentUrl={mouths} />
     </div>
   );
